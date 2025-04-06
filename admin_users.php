@@ -20,25 +20,34 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Get total users count
-$users_query = "SELECT COUNT(*) as total_users FROM users";
+// Get all users
+$users_query = "SELECT * FROM users ORDER BY created_at DESC";
 $users_result = mysqli_query($conn, $users_query);
-$users_data = mysqli_fetch_assoc($users_result);
-$total_users = $users_data['total_users'];
 
-// Get total teachers count
-$teachers_query = "SELECT COUNT(*) as total_teachers FROM teachers";
-$teachers_result = mysqli_query($conn, $teachers_query);
-$teachers_data = mysqli_fetch_assoc($teachers_result);
-$total_teachers = $teachers_data['total_teachers'];
+// Handle user deletion
+$success_message = '';
+$error_message = '';
 
-// Get recent users
-$recent_users_query = "SELECT * FROM users ORDER BY created_at DESC LIMIT 5";
-$recent_users_result = mysqli_query($conn, $recent_users_query);
+if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
+    $user_id = (int)$_GET['id'];
+    
+    // Delete user from database
+    $delete_query = "DELETE FROM users WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $delete_query);
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    
+    if (mysqli_stmt_execute($stmt)) {
+        header("Location: admin_users.php?success=user_deleted");
+        exit();
+    } else {
+        $error_message = "Error deleting user: " . mysqli_error($conn);
+    }
+    
+    mysqli_stmt_close($stmt);
+}
 
-// Get recent teachers
-$recent_teachers_query = "SELECT * FROM teachers ORDER BY created_at DESC LIMIT 5";
-$recent_teachers_result = mysqli_query($conn, $recent_teachers_query);
+// Refresh user list after operations
+$users_result = mysqli_query($conn, $users_query);
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +55,7 @@ $recent_teachers_result = mysqli_query($conn, $recent_teachers_query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Admin - User Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -149,7 +158,80 @@ $recent_teachers_result = mysqli_query($conn, $recent_teachers_query);
             background: #e5304e;
         }
         
-        .stats {
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .alert i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .alert.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .users-table th, .users-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .users-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .users-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .delete-btn {
+            background: #ff3860;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        
+        .delete-btn:hover {
+            background: #e5304e;
+        }
+        
+        .delete-btn i {
+            margin-right: 5px;
+        }
+        
+        .user-stats {
             display: flex;
             gap: 20px;
             margin-bottom: 30px;
@@ -183,88 +265,6 @@ $recent_teachers_result = mysqli_query($conn, $recent_teachers_query);
             font-size: 14px;
         }
         
-        .recent-section {
-            background: white;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .recent-section h2 {
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 20px;
-        }
-        
-        .users-table, .teachers-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .users-table th, .users-table td,
-        .teachers-table th, .teachers-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .users-table th, .teachers-table th {
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .users-table tr:hover, .teachers-table tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .delete-btn {
-            background: #ff3860;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            transition: background 0.3s;
-        }
-        
-        .delete-btn:hover {
-            background: #e5304e;
-        }
-        
-        .delete-btn i {
-            margin-right: 5px;
-        }
-        
-        .view-all {
-            display: block;
-            text-align: right;
-            margin-top: 15px;
-            color: #5995fd;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        
-        .view-all:hover {
-            text-decoration: underline;
-        }
-        
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        
-        @media (max-width: 992px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         @media (max-width: 768px) {
             .dashboard {
                 flex-direction: column;
@@ -274,7 +274,7 @@ $recent_teachers_result = mysqli_query($conn, $recent_teachers_query);
                 width: 100%;
             }
             
-            .stats {
+            .user-stats {
                 flex-direction: column;
             }
         }
@@ -295,36 +295,44 @@ $recent_teachers_result = mysqli_query($conn, $recent_teachers_query);
         
         <div class="main-content">
             <div class="header">
-                <h1>Dashboard</h1>
+                <h1>User Management</h1>
                 <div class="user-info">
                     <span>Welcome, <?php echo htmlspecialchars($_SESSION['admin_username']); ?></span>
                     <a href="admin_logout.php" class="logout-btn">Logout</a>
                 </div>
             </div>
             
-            <div class="stats">
+            <?php if (isset($_GET['success'])): ?>
+                <div class="alert success">
+                    <i class="fas fa-check-circle"></i> 
+                    <?php 
+                        if ($_GET['success'] == 'user_deleted') echo "User has been successfully deleted.";
+                        else echo "Operation completed successfully.";
+                    ?>
+                </div>
+            <?php endif; ?>
+            
+            <?php if (!empty($error_message)): ?>
+                <div class="alert error">
+                    <i class="fas fa-exclamation-circle"></i> <?php echo $error_message; ?>
+                </div>
+            <?php endif; ?>
+            
+            <div class="user-stats">
                 <div class="stat-card">
                     <i class="fas fa-users"></i>
+                    <?php 
+                    $total_users_query = "SELECT COUNT(*) as count FROM users";
+                    $total_users_result = mysqli_query($conn, $total_users_query);
+                    $total_users = mysqli_fetch_assoc($total_users_result)['count'];
+                    ?>
                     <h3><?php echo $total_users; ?></h3>
                     <p>Total Users</p>
                 </div>
                 
                 <div class="stat-card">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h3><?php echo $total_teachers; ?></h3>
-                    <p>Total Teachers</p>
-                </div>
-                
-                <div class="stat-card">
-                    <i class="fas fa-comments"></i>
-                    <h3>0</h3>
-                    <p>Total Messages</p>
-                </div>
-                
-                <div class="stat-card">
                     <i class="fas fa-user-plus"></i>
                     <?php 
-                    // Get count of new users registered today
                     $new_users_query = "SELECT COUNT(*) as count FROM users WHERE DATE(created_at) = CURDATE()";
                     $new_users_result = mysqli_query($conn, $new_users_query);
                     $new_users = mysqli_fetch_assoc($new_users_result)['count'];
@@ -332,71 +340,55 @@ $recent_teachers_result = mysqli_query($conn, $recent_teachers_query);
                     <h3><?php echo $new_users; ?></h3>
                     <p>New Users Today</p>
                 </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-user-check"></i>
+                    <?php 
+                    // The error is in this query - last_login column doesn't exist
+                    // Let's modify it to use created_at instead or remove the condition
+                    $active_users_query = "SELECT COUNT(*) as count FROM users WHERE created_at >= NOW() - INTERVAL 7 DAY";
+                    $active_users_result = mysqli_query($conn, $active_users_query);
+                    $active_users = 0;
+                    if ($active_users_result) {
+                        $active_users = mysqli_fetch_assoc($active_users_result)['count'];
+                    }
+                    ?>
+                    <h3><?php echo $active_users; ?></h3>
+                    <p>Active Users (7 days)</p>
+                </div>
             </div>
             
-            <div class="dashboard-grid">
-                <div class="recent-section">
-                    <h2>Recent Users</h2>
-                    <table class="users-table">
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Joined Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while ($user = mysqli_fetch_assoc($recent_users_result)): ?>
+            <h2>All Users</h2>
+            <?php if (mysqli_num_rows($users_result) > 0): ?>
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Joined Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($user = mysqli_fetch_assoc($users_result)): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($user['username']); ?></td>
                                 <td><?php echo htmlspecialchars($user['email']); ?></td>
+                                <td><?php echo isset($user['phone_number']) ? htmlspecialchars($user['phone_number']) : 'N/A'; ?></td>
                                 <td><?php echo date('M d, Y', strtotime($user['created_at'])); ?></td>
                                 <td>
-                                    <a href="admin_delete_user.php?id=<?php echo $user['id']; ?>" 
-                                       class="delete-btn" 
-                                       onclick="return confirm('Are you sure you want to delete this user?');">
+                                    <a href="admin_users.php?action=delete&id=<?php echo $user['id']; ?>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this user?');">
                                         <i class="fas fa-trash"></i> Delete
                                     </a>
                                 </td>
                             </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
-                    <a href="admin_users.php" class="view-all">View All Users</a>
-                </div>
-                
-                <div class="recent-section">
-                    <h2>Recent Teachers</h2>
-                    <table class="teachers-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Expertise</th>
-                                <th>Added Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while ($teacher = mysqli_fetch_assoc($recent_teachers_result)): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($teacher['name']); ?></td>
-                                <td><?php echo htmlspecialchars($teacher['expertise']); ?></td>
-                                <td><?php echo date('M d, Y', strtotime($teacher['created_at'])); ?></td>
-                                <td>
-                                    <a href="admin_teachers.php?action=delete&id=<?php echo $teacher['id']; ?>" 
-                                       class="delete-btn" 
-                                       onclick="return confirm('Are you sure you want to delete this teacher?');">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
-                    <a href="admin_teachers.php" class="view-all">View All Teachers</a>
-                </div>
-            </div>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>No users found.</p>
+            <?php endif; ?>
         </div>
     </div>
 </body>

@@ -11,6 +11,10 @@ $message = $_POST['message'] ?? '';
 $file_name = '';
 $file_path = '';
 
+// Encrypt the message using a simple but effective method
+$encryption_key = md5('demochatapp_secure_salt' . $dbname);
+$encrypted_message = openssl_encrypt($message, 'AES-128-CBC', $encryption_key, 0, substr($encryption_key, 0, 16));
+
 // Check if a file was uploaded
 if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
     $upload_dir = 'uploads/';
@@ -24,15 +28,15 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
     move_uploaded_file($_FILES['file']['tmp_name'], $file_path);
 }
 
-// Debug output
-error_log("Sending message: " . $message);
+// Debug output - don't log the actual message content
+error_log("Sending encrypted message");
 error_log("User ID: " . $_SESSION['user_id']);
 error_log("File name: " . $file_name);
 error_log("File path: " . $file_path);
 
 try {
     $stmt = $pdo->prepare("INSERT INTO messages (user_id, message, file_name, file_path) VALUES (?, ?, ?, ?)");
-    $result = $stmt->execute([$_SESSION['user_id'], $message, $file_name, $file_path]);
+    $result = $stmt->execute([$_SESSION['user_id'], $encrypted_message, $file_name, $file_path]);
     
     if ($result) {
         echo json_encode(['success' => true]);
