@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1e88e5;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+        .courses-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.php" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
+    <div class="header">
+        <h1>Photography Courses</h1>
+        <p>Explore our comprehensive photography courses for all levels</p>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_dslr_photography_for_beginners">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="DSLR Photography">
+                <span class="course-tag photography"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="James Wilson" class="instructor-img">
+                    <span class="instructor-name">James Wilson</span>
+                </div>
+                <h3 class="course-title">DSLR Photography for Beginners</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 24 Lessons</span>
+                    <span><i class="fas fa-users"></i> 87</span>
+                    <span><i class="fas fa-star"></i> 4.8(65)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">BEGINNER</span>
+                    <span class="price">$59.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_portrait_photography_masterclass">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Portrait Photography">
+                <span class="course-tag photography"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/35.jpg" alt="Emma Roberts" class="instructor-img">
+                    <span class="instructor-name">Emma Roberts</span>
+                </div>
+                <h3 class="course-title">Portrait Photography Masterclass</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 30 Lessons</span>
+                    <span><i class="fas fa-users"></i> 92</span>
+                    <span><i class="fas fa-star"></i> 4.9(78)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$79.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_landscape_photography_capturing_nature">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1520549233664-03f65c1d1327?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Landscape Photography">
+                <span class="course-tag photography"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Michael Thompson" class="instructor-img">
+                    <span class="instructor-name">Michael Thompson</span>
+                </div>
+                <h3 class="course-title">Landscape Photography: Capturing Nature</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 28 Lessons</span>
+                    <span><i class="fas fa-users"></i> 76</span>
+                    <span><i class="fas fa-star"></i> 4.7(62)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ALL LEVELS</span>
+                    <span class="price">$69.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_adobe_lightroom_photoshop_masterclass">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" alt="Photo Editing">
+                <span class="course-tag photography"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Jessica Miller" class="instructor-img">
+                    <span class="instructor-name">Jessica Miller</span>
+                </div>
+                <h3 class="course-title">Adobe Lightroom & Photoshop Masterclass</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 35 Lessons</span>
+                    <span><i class="fas fa-users"></i> 104</span>
+                    <span><i class="fas fa-star"></i> 4.8(89)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$89.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_product_photography_for_ecommerce">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Product Photography">
+                <span class="course-tag photography"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="David Thompson" class="instructor-img">
+                    <span class="instructor-name">David Thompson</span>
+                </div>
+                <h3 class="course-title">Product Photography for E-commerce</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 26 Lessons</span>
+                    <span><i class="fas fa-users"></i> 83</span>
+                    <span><i class="fas fa-star"></i> 4.6(71)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ALL LEVELS</span>
+                    <span class="price">$75.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_street_photography_urban_storytelling">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1551316679-9c6ae9dec224?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Street Photography">
+                <span class="course-tag photography"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Amanda Wilson" class="instructor-img">
+                    <span class="instructor-name">Amanda Wilson</span>
+                </div>
+                <h3 class="course-title">Street Photography: Urban Storytelling</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 22 Lessons</span>
+                    <span><i class="fas fa-users"></i> 68</span>
+                    <span><i class="fas fa-star"></i> 4.7(53)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$65.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="favorites.js"></script>
+</body>
+</html>

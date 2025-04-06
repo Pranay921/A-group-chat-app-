@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1e88e5;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+        .courses-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.php" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
+    <div class="header">
+        <h1>Chemistry Courses</h1>
+        <p>Explore our comprehensive chemistry courses for all levels</p>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_introduction_to_organic_chemistry_1">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Organic Chemistry">
+                <span class="course-tag chemistry"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Robert Miller" class="instructor-img">
+                    <span class="instructor-name">Dr. Robert Miller</span>
+                </div>
+                <h3 class="course-title">Introduction to Organic Chemistry</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 15 Lessons</span>
+                    <span><i class="fas fa-users"></i> 42</span>
+                    <span><i class="fas fa-star"></i> 4.8(24)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">BEGINNER</span>
+                    <span class="price">$49.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_advanced_inorganic_chemistry_1">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1616466829544-e918a7f9b6e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Inorganic Chemistry">
+                <span class="course-tag chemistry"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Sarah Johnson" class="instructor-img">
+                    <span class="instructor-name">Dr. Sarah Johnson</span>
+                </div>
+                <h3 class="course-title">Advanced Inorganic Chemistry</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 18 Lessons</span>
+                    <span><i class="fas fa-users"></i> 35</span>
+                    <span><i class="fas fa-star"></i> 4.9(31)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ADVANCED</span>
+                    <span class="price">$79.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_fundamentals_of_biochemistry_1">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Biochemistry">
+                <span class="course-tag chemistry"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Prof. James Wilson" class="instructor-img">
+                    <span class="instructor-name">Prof. James Wilson</span>
+                </div>
+                <h3 class="course-title">Fundamentals of Biochemistry</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 22 Lessons</span>
+                    <span><i class="fas fa-users"></i> 58</span>
+                    <span><i class="fas fa-star"></i> 4.7(42)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$65.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_introduction_to_organic_chemistry_2">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Organic Chemistry">
+                <span class="course-tag chemistry"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Robert Miller" class="instructor-img">
+                    <span class="instructor-name">Dr. Robert Miller</span>
+                </div>
+                <h3 class="course-title">Introduction to Organic Chemistry</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 15 Lessons</span>
+                    <span><i class="fas fa-users"></i> 42</span>
+                    <span><i class="fas fa-star"></i> 4.8(24)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">BEGINNER</span>
+                    <span class="price">$49.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1616466829544-e918a7f9b6e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Inorganic Chemistry">
+                <span class="course-tag chemistry"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Sarah Johnson" class="instructor-img">
+                    <span class="instructor-name">Dr. Sarah Johnson</span>
+                </div>
+                <h3 class="course-title">Advanced Inorganic Chemistry</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 18 Lessons</span>
+                    <span><i class="fas fa-users"></i> 35</span>
+                    <span><i class="fas fa-star"></i> 4.9(31)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ADVANCED</span>
+                    <span class="price">$79.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Biochemistry">
+                <span class="course-tag chemistry"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Prof. James Wilson" class="instructor-img">
+                    <span class="instructor-name">Prof. James Wilson</span>
+                </div>
+                <h3 class="course-title">Fundamentals of Biochemistry</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 22 Lessons</span>
+                    <span><i class="fas fa-users"></i> 58</span>
+                    <span><i class="fas fa-star"></i> 4.7(42)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$65.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="favorites.js"></script>
+</body>
+</html>

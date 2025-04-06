@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket Science Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1e88e5;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+        .courses-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.php" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
+    <div class="header">
+        <h1>Rocket Science Courses</h1>
+        <p>Explore our comprehensive rocket science courses for all levels</p>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_introduction_to_rocket_propulsion">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rocket Propulsion">
+                <span class="course-tag rocketscience"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Dr. Robert Mitchell" class="instructor-img">
+                    <span class="instructor-name">Dr. Robert Mitchell</span>
+                </div>
+                <h3 class="course-title">Introduction to Rocket Propulsion</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 32 Lessons</span>
+                    <span><i class="fas fa-users"></i> 67</span>
+                    <span><i class="fas fa-star"></i> 4.9(45)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">BEGINNER</span>
+                    <span class="price">$89.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_orbital_mechanics_and_space_flight">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Orbital Mechanics">
+                <span class="course-tag rocketscience"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/35.jpg" alt="Dr. Sarah Johnson" class="instructor-img">
+                    <span class="instructor-name">Dr. Sarah Johnson</span>
+                </div>
+                <h3 class="course-title">Orbital Mechanics and Space Flight</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 38 Lessons</span>
+                    <span><i class="fas fa-users"></i> 52</span>
+                    <span><i class="fas fa-star"></i> 4.8(38)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$119.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_spacecraft_design_and_engineering">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Spacecraft Design">
+                <span class="course-tag rocketscience"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Prof. James Wilson" class="instructor-img">
+                    <span class="instructor-name">Prof. James Wilson</span>
+                </div>
+                <h3 class="course-title">Spacecraft Design and Engineering</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 45 Lessons</span>
+                    <span><i class="fas fa-users"></i> 46</span>
+                    <span><i class="fas fa-star"></i> 4.7(32)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ADVANCED</span>
+                    <span class="price">$149.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_rocket_aerodynamics_and_fluid_dynamics">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Rocket Aerodynamics">
+                <span class="course-tag rocketscience"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Dr. Emily Chen" class="instructor-img">
+                    <span class="instructor-name">Dr. Emily Chen</span>
+                </div>
+                <h3 class="course-title">Rocket Aerodynamics and Fluid Dynamics</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 36 Lessons</span>
+                    <span><i class="fas fa-users"></i> 39</span>
+                    <span><i class="fas fa-star"></i> 4.8(29)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ADVANCED</span>
+                    <span class="price">$129.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_space_mission_planning_and_analysis">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Space Mission Planning">
+                <span class="course-tag rocketscience"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="Dr. Michael Thompson" class="instructor-img">
+                    <span class="instructor-name">Dr. Michael Thompson</span>
+                </div>
+                <h3 class="course-title">Space Mission Planning and Analysis</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 40 Lessons</span>
+                    <span><i class="fas fa-users"></i> 43</span>
+                    <span><i class="fas fa-star"></i> 4.9(31)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$109.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_materials_science_for_aerospace_applications">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1581822261290-991b38693d1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rocket Materials">
+                <span class="course-tag rocketscience"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Dr. Amanda Wilson" class="instructor-img">
+                    <span class="instructor-name">Dr. Amanda Wilson</span>
+                </div>
+                <h3 class="course-title">Materials Science for Aerospace Applications</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 34 Lessons</span>
+                    <span><i class="fas fa-users"></i> 38</span>
+                    <span><i class="fas fa-star"></i> 4.7(27)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$99.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="favorites.js"></script>
+</body>
+</html>

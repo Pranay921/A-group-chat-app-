@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1e88e5;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+        .courses-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.php" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
+    <div class="header">
+        <h1>Mathematics Courses</h1>
+        <p>Explore our comprehensive mathematics courses for all levels</p>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_calculus_limits_and_derivatives">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Calculus">
+                <span class="course-tag math"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Dr. Alan Parker" class="instructor-img">
+                    <span class="instructor-name">Dr. Alan Parker</span>
+                </div>
+                <h3 class="course-title">Calculus I: Limits and Derivatives</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 24 Lessons</span>
+                    <span><i class="fas fa-users"></i> 68</span>
+                    <span><i class="fas fa-star"></i> 4.8(52)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">BEGINNER</span>
+                    <span class="price">$59.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_linear_algebra_and_matrix_theory">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Linear Algebra">
+                <span class="course-tag math"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Prof. Emily Chen" class="instructor-img">
+                    <span class="instructor-name">Prof. Emily Chen</span>
+                </div>
+                <h3 class="course-title">Linear Algebra and Matrix Theory</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 30 Lessons</span>
+                    <span><i class="fas fa-users"></i> 75</span>
+                    <span><i class="fas fa-star"></i> 4.9(63)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$69.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_statistics_and_probability_theory">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Statistics">
+                <span class="course-tag math"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Dr. Michael Thompson" class="instructor-img">
+                    <span class="instructor-name">Dr. Michael Thompson</span>
+                </div>
+                <h3 class="course-title">Statistics and Probability Theory</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 28 Lessons</span>
+                    <span><i class="fas fa-users"></i> 92</span>
+                    <span><i class="fas fa-star"></i> 4.7(78)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ALL LEVELS</span>
+                    <span class="price">$65.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_differential_equations_and_applications">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1635070041544-3c1c237ebe95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Differential Equations">
+                <span class="course-tag math"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Prof. David Wright" class="instructor-img">
+                    <span class="instructor-name">Prof. David Wright</span>
+                </div>
+                <h3 class="course-title">Differential Equations and Applications</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 32 Lessons</span>
+                    <span><i class="fas fa-users"></i> 61</span>
+                    <span><i class="fas fa-star"></i> 4.8(49)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ADVANCED</span>
+                    <span class="price">$79.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_discrete_mathematics_for_computer_science">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1544476915-ed1370594142?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Discrete Mathematics">
+                <span class="course-tag math"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/36.jpg" alt="Dr. Lisa Rodriguez" class="instructor-img">
+                    <span class="instructor-name">Dr. Lisa Rodriguez</span>
+                </div>
+                <h3 class="course-title">Discrete Mathematics for Computer Science</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 26 Lessons</span>
+                    <span><i class="fas fa-users"></i> 83</span>
+                    <span><i class="fas fa-star"></i> 4.6(57)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$69.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_introduction_to_number_theory">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Number Theory">
+                <span class="course-tag math"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Dr. Thomas Lee" class="instructor-img">
+                    <span class="instructor-name">Dr. Thomas Lee</span>
+                </div>
+                <h3 class="course-title">Introduction to Number Theory</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 22 Lessons</span>
+                    <span><i class="fas fa-users"></i> 57</span>
+                    <span><i class="fas fa-star"></i> 4.7(41)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">BEGINNER</span>
+                    <span class="price">$55.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="favorites.js"></script>
+</body>
+</html>

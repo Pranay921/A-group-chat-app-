@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food & Recipe Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1e88e5;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+        .courses-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.php" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
+    <div class="header">
+        <h1>Food & Recipe Courses</h1>
+        <p>Explore our comprehensive culinary courses for all levels</p>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_italian_mexican_cuisine_masterclass">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Italian Cooking">
+                <span class="course-tag food"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Chef Marco Rossi" class="instructor-img">
+                    <span class="instructor-name">Chef Marco Rossi</span>
+                </div>
+                <h3 class="course-title">Italian and mexicon Cuisine Masterclass</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 28 Lessons</span>
+                    <span><i class="fas fa-users"></i> 95</span>
+                    <span><i class="fas fa-star"></i> 4.9(82)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ALL LEVELS</span>
+                    <span class="price">$79.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_artisan_bread_baking_fundamentals">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80" alt="Baking">
+                <span class="course-tag food"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/35.jpg" alt="Chef Emily Johnson" class="instructor-img">
+                    <span class="instructor-name">Chef Emily Johnson</span>
+                </div>
+                <h3 class="course-title">Artisan Bread Baking Fundamentals</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 24 Lessons</span>
+                    <span><i class="fas fa-users"></i> 87</span>
+                    <span><i class="fas fa-star"></i> 4.8(75)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">BEGINNER</span>
+                    <span class="price">$65.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_nutritious_meal_planning_preparation">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Healthy Cooking">
+                <span class="course-tag food"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/36.jpg" alt="Dr. Sarah Wilson" class="instructor-img">
+                    <span class="instructor-name">Dr. Sarah Wilson</span>
+                </div>
+                <h3 class="course-title">Nutritious Meal Planning & Preparation</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 30 Lessons</span>
+                    <span><i class="fas fa-users"></i> 104</span>
+                    <span><i class="fas fa-star"></i> 4.7(91)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ALL LEVELS</span>
+                    <span class="price">$69.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_asian_cuisine_thailand_to_japan">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2127&q=80" alt="Asian Cuisine">
+                <span class="course-tag food"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Chef David Chen" class="instructor-img">
+                    <span class="instructor-name">Chef David Chen</span>
+                </div>
+                <h3 class="course-title">Asian Cuisine: From Thailand to Japan</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 36 Lessons</span>
+                    <span><i class="fas fa-users"></i> 89</span>
+                    <span><i class="fas fa-star"></i> 4.9(78)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$85.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_gourmet_desserts_and_pastry_arts">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80" alt="Desserts">
+                <span class="course-tag food"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Chef Maria Garcia" class="instructor-img">
+                    <span class="instructor-name">Chef Maria Garcia</span>
+                </div>
+                <h3 class="course-title">Gourmet Desserts and Pastry Arts</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 32 Lessons</span>
+                    <span><i class="fas fa-users"></i> 76</span>
+                    <span><i class="fas fa-star"></i> 4.8(64)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$75.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_professional_culinary_techniques">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Culinary Techniques">
+                <span class="course-tag food"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Chef James Wilson" class="instructor-img">
+                    <span class="instructor-name">Chef James Wilson</span>
+                </div>
+                <h3 class="course-title">Professional Culinary Techniques</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 40 Lessons</span>
+                    <span><i class="fas fa-users"></i> 112</span>
+                    <span><i class="fas fa-star"></i> 4.9(97)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ADVANCED</span>
+                    <span class="price">$99.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="favorites.js"></script>
+</body>
+</html>

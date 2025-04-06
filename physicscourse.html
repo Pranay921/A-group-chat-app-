@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1e88e5;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+        }
+        .courses-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.php" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    
+    <div class="header">
+        <h1>Physics Courses</h1>
+        <p>Explore our comprehensive physics courses for all levels</p>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_classical_mechanics_principles_and_applications">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Classical Mechanics">
+                <span class="course-tag physics"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Dr. Alan Parker" class="instructor-img">
+                    <span class="instructor-name">Dr. Alan Parker</span>
+                </div>
+                <h3 class="course-title">Classical Mechanics: Principles and Applications</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 16 Lessons</span>
+                    <span><i class="fas fa-users"></i> 38</span>
+                    <span><i class="fas fa-star"></i> 4.7(19)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">BEGINNER</span>
+                    <span class="price">$59.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_introduction_to_quantum_mechanics">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Quantum Physics">
+                <span class="course-tag physics"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Prof. Emily Chen" class="instructor-img">
+                    <span class="instructor-name">Prof. Emily Chen</span>
+                </div>
+                <h3 class="course-title">Introduction to Quantum Mechanics</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 20 Lessons</span>
+                    <span><i class="fas fa-users"></i> 45</span>
+                    <span><i class="fas fa-star"></i> 4.9(27)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ADVANCED</span>
+                    <span class="price">$89.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_fundamentals_of_astrophysics">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2022&q=80" alt="Astrophysics">
+                <span class="course-tag physics"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Dr. Michael Thompson" class="instructor-img">
+                    <span class="instructor-name">Dr. Michael Thompson</span>
+                </div>
+                <h3 class="course-title">Fundamentals of Astrophysics</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 18 Lessons</span>
+                    <span><i class="fas fa-users"></i> 62</span>
+                    <span><i class="fas fa-star"></i> 4.8(35)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$75.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="courses-container">
+        <div class="course-card" data-course-id="course_special_and_general_relativity">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Relativity">
+                <span class="course-tag physics"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Prof. David Wright" class="instructor-img">
+                    <span class="instructor-name">Prof. David Wright</span>
+                </div>
+                <h3 class="course-title">Special and General Relativity</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 22 Lessons</span>
+                    <span><i class="fas fa-users"></i> 41</span>
+                    <span><i class="fas fa-star"></i> 4.9(32)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">ADVANCED</span>
+                    <span class="price">$85.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_principles_of_electromagnetism">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Electromagnetism">
+                <span class="course-tag physics"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/women/36.jpg" alt="Dr. Lisa Rodriguez" class="instructor-img">
+                    <span class="instructor-name">Dr. Lisa Rodriguez</span>
+                </div>
+                <h3 class="course-title">Principles of Electromagnetism</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 17 Lessons</span>
+                    <span><i class="fas fa-users"></i> 53</span>
+                    <span><i class="fas fa-star"></i> 4.6(29)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$69.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-card" data-course-id="course_thermodynamics_and_statistical_mechanics">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1607988795691-3d0147b43231?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Thermodynamics">
+                <span class="course-tag physics"></span>
+                <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <div class="course-content">
+                <div class="instructor">
+                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Dr. Thomas Lee" class="instructor-img">
+                    <span class="instructor-name">Dr. Thomas Lee</span>
+                </div>
+                <h3 class="course-title">Thermodynamics and Statistical Mechanics</h3>
+                <div class="course-info">
+                    <span><i class="fas fa-book-open"></i> 19 Lessons</span>
+                    <span><i class="fas fa-users"></i> 47</span>
+                    <span><i class="fas fa-star"></i> 4.7(38)</span>
+                </div>
+                <div class="course-footer">
+                    <span class="level-tag">INTERMEDIATE</span>
+                    <span class="price">$72.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="favorites.js"></script>
+</body>
+</html>
