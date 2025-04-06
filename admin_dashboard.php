@@ -27,7 +27,7 @@ $users_data = mysqli_fetch_assoc($users_result);
 $total_users = $users_data['total_users'];
 
 // Get recent users
-$recent_users_query = "SELECT username, email, created_at FROM users ORDER BY created_at DESC LIMIT 5";
+$recent_users_query = "SELECT id, username, email, created_at FROM users ORDER BY created_at DESC LIMIT 5";
 $recent_users_result = mysqli_query($conn, $recent_users_query);
 
 $conn->close();
@@ -202,6 +202,26 @@ $conn->close();
         .users-table tr:hover {
             background: #f5f5f5;
         }
+        
+        .delete-btn {
+            background: #ff3860;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        
+        .delete-btn i {
+            margin-right: 5px;
+        }
+        
+        .delete-btn:hover {
+            background: #e5304e;
+        }
     </style>
 </head>
 <body>
@@ -224,6 +244,50 @@ $conn->close();
                     <a href="admin_logout.php" class="logout-btn">Logout</a>
                 </div>
             </div>
+            
+            <?php if (isset($_GET['success']) && $_GET['success'] == 'user_deleted'): ?>
+                <div class="alert success">
+                    <i class="fas fa-check-circle"></i> User has been successfully deleted.
+                </div>
+            <?php endif; ?>
+            
+            <?php if (isset($_GET['error'])): ?>
+                <div class="alert error">
+                    <i class="fas fa-exclamation-circle"></i> 
+                    <?php 
+                        if ($_GET['error'] == 'invalid_id') echo "Invalid user ID.";
+                        else if ($_GET['error'] == 'delete_failed') echo "Failed to delete user.";
+                        else echo "An error occurred.";
+                    ?>
+                </div>
+            <?php endif; ?>
+            <style>
+
+                .alert {
+                    padding: 15px;
+                    margin-bottom: 20px;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                }
+                
+                .alert i {
+                    margin-right: 10px;
+                    font-size: 18px;
+                }
+                
+                .alert.success {
+                    background-color: #d4edda;
+                    color: #155724;
+                    border: 1px solid #c3e6cb;
+                }
+                
+                .alert.error {
+                    background-color: #f8d7da;
+                    color: #721c24;
+                    border: 1px solid #f5c6cb;
+                }
+            </style>
             
             <div class="stats-container">
                 <div class="stat-card">
@@ -253,6 +317,7 @@ $conn->close();
                             <th>Username</th>
                             <th>Email</th>
                             <th>Joined Date</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -261,6 +326,13 @@ $conn->close();
                             <td><?php echo htmlspecialchars($user['username']); ?></td>
                             <td><?php echo htmlspecialchars($user['email']); ?></td>
                             <td><?php echo date('M d, Y', strtotime($user['created_at'])); ?></td>
+                            <td>
+                                <a href="admin_delete_user.php?id=<?php echo $user['id']; ?>" 
+                                   class="delete-btn" 
+                                   onclick="return confirm('Are you sure you want to delete this user?');">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </td>
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
