@@ -202,7 +202,13 @@ require_once 'config.php';
                 text-decoration: none;
                 transition: all 0.3s ease;
             }
-            
+            .navbar {
+                /* background-color: rgba(255, 255, 255, 0.95); */
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
             .social-icon:hover {
                 background: linear-gradient(135deg, #87CEEB, #1E90FF);
                 color: #fff;
@@ -271,6 +277,241 @@ require_once 'config.php';
             
             .contact-item p {
                 margin: 0;
+            }
+            .hero-section {
+                position: relative;
+                height: 85vh;
+                background: linear-gradient(135deg, #1e88e5 0%, #5e35b1 100%);
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 0; /* Ensure no gap between navbar and hero */
+            }
+            .hero-content {
+                position: relative;
+                z-index: 10;
+                text-align: center;
+                max-width: 1200px;
+                padding: 0 20px;
+            }
+
+            .hero-title {
+                font-size: 4rem;
+                font-weight: 800;
+                color: white;
+                margin-bottom: 1rem;
+                opacity: 0;
+                transform: translateY(30px);
+                animation: fadeInUp 0.8s ease forwards 0.2s;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 2rem;
+                opacity: 0;
+                transform: translateY(30px);
+                animation: fadeInUp 0.8s ease forwards 0.4s;
+            }
+
+            .hero-buttons {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                opacity: 0;
+                transform: translateY(30px);
+                animation: fadeInUp 0.8s ease forwards 0.6s;
+            }
+
+            .hero-btn {
+                padding: 12px 30px;
+                border-radius: 30px;
+                font-weight: 600;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .hero-btn-primary {
+                background: white;
+                color: #1e88e5;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .hero-btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+
+            .hero-btn-secondary {
+                background: transparent;
+                color: white;
+                border: 2px solid white;
+            }
+
+            .hero-btn-secondary:hover {
+                background: rgba(255, 255, 255, 0.1);
+                transform: translateY(-3px);
+            }
+
+            /* Animated elements */
+            .floating-element {
+                position: absolute;
+                opacity: 0.2;
+                background: white;
+                animation: float 15s infinite ease-in-out;
+            }
+
+            .element-1 {
+                width: 150px;
+                height: 150px;
+                top: 10%;
+                left: 10%;
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+                animation-delay: 0s;
+            }
+
+            .element-2 {
+                width: 80px;
+                height: 80px;
+                top: 60%;
+                left: 15%;
+                border-radius: 50%;
+                animation-delay: 2s;
+            }
+
+            .element-3 {
+                width: 200px;
+                height: 200px;
+                top: 20%;
+                right: 15%;
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                animation-delay: 4s;
+            }
+
+            .element-4 {
+                width: 100px;
+                height: 100px;
+                bottom: 20%;
+                right: 10%;
+                border-radius: 50%;
+                animation-delay: 6s;
+            }
+
+            .element-5 {
+                width: 120px;
+                height: 120px;
+                bottom: 30%;
+                left: 30%;
+                border-radius: 30% 70% 50% 50% / 50% 50% 70% 30%;
+                animation-delay: 8s;
+            }
+
+            /* Floating animation */
+            @keyframes float {
+                0% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+                25% {
+                    transform: translate(20px, 35px) rotate(8deg);
+                }
+                50% {
+                    transform: translate(10px, -20px) rotate(15deg);
+                }
+                75% {
+                    transform: translate(-20px, 10px) rotate(8deg);
+                }
+                100% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+            }
+
+            /* Fade in up animation */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Dark mode adjustments */
+            .dark-mode .hero-section {
+                background: linear-gradient(135deg, #0d47a1 0%, #4527a0 100%);
+            }
+
+            .dark-mode .hero-btn-primary {
+                background: #f5f5f5;
+                color: #0d47a1;
+            }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+                .hero-subtitle {
+                    font-size: 1.2rem;
+                }
+                .hero-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .hero-btn {
+                    width: 100%;
+                    max-width: 250px;
+                    text-align: center;
+                }
+            }
+
+            /* Add this new CSS for instructor cards */
+            .instructor-cards {
+                display: flex;
+                justify-content: space-between;
+                margin: 0 auto;
+                max-width: 1200px;
+                gap: 20px;
+                padding: 0 15px;
+                flex-wrap: nowrap; /* Prevent wrapping */
+            }
+            
+            /* Animation keyframes for course cards */
+            @keyframes slideInFromLeft {
+                from {
+                    opacity: 0;
+                    transform: translateX(-50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @keyframes slideInFromRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @keyframes slideInFromBottom {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
         </style>
     </head>
@@ -362,19 +603,22 @@ require_once 'config.php';
         </div>
     </nav>
     <div class="nav-slider-spacer"></div>
-    <div class="hero-slider"> 
-        <div class="slide active">
-            <img src="finalstudynew1.jpg" alt="Education">
-            <div class="slide-content">
-                <span class="subtitle">Enjoy smooth learning</span>
-                <h1 class="main-title">Best Education<br>Template Ever!</h1>
-                <div class="cta-buttons">
-                    <a href="#" class="btn learn-more">LEARN MORE</a>
-                    <a href="#courses-section" class="btn our-courses">OUR COURSES</a>
-                </div>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Elevate Your Learning Journey</h1>
+            <p class="hero-subtitle">Discover expert-led courses designed to transform your skills and advance your career</p>
+            <div class="hero-buttons">
+                <a href="#courses-section" class="hero-btn hero-btn-primary">Explore Courses</a>
+                <a href="#instructor-section" class="hero-btn hero-btn-secondary">Meet Our Instructors</a>
             </div>
         </div>
-    </div>
+        <!-- Animated background elements -->
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
+        <div class="floating-element element-4"></div>
+        <div class="floating-element element-5"></div>
+    </section>
     
     <div class="counter-section">
         <h1 class="counter-heading">Our <span>student community</span> is more than one million strong</h1>
