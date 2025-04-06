@@ -552,24 +552,9 @@ require_once 'config.php';
     <!-- Header section -->
     <header class="header">
         <div class="header-container">
-            <!-- Logo -->
-            <!-- <div class="logo">
-                <img src="your-logo.png" alt="Logo">
-            </div> -->
-
-            <!-- Burger Menu Button -->
             <div class="menu-btn">
                 <span class="menu-btn__burger"></span>
             </div>
-
-            <!-- Navigation Menu -->
-            <!-- <nav class="nav-menu">
-                <a href="#top" class="nav-link">Home</a>
-                <a href="#about-section" class="nav-link">About</a>
-                <a href="#courses-section" class="nav-link">Courses</a>
-                <a href="#instructor-section" class="nav-link">Instructor</a>
-                <a href="#welcome-tag" class="nav-link">Contact Us</a>
-            </nav> -->
         </div>
     </header>
 
@@ -796,6 +781,7 @@ require_once 'config.php';
             </div>
         </div>
     </section>
+    
     <div class="categories-section">
         <div class="instructors-tag">INSTRUCTORS</div>
         <h2 class="categories-title">Popular Categories</h2>
@@ -879,139 +865,115 @@ require_once 'config.php';
         <h2 class="section-title">Experience Instructor</h2>
         
         <div class="instructor-cards">
-            <!-- Instructor Card 1 -->
+            <?php
+            // Database connection
+            $servername = "localhost";
+            $db_username = "root";
+            $db_password = "";
+            $database = "demochatapp";
+            
+            // Create a connection
+            $conn = mysqli_connect($servername, $db_username, $db_password, $database);
+            
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+            
+            // Get teachers from database
+            $query = "SELECT * FROM teachers ORDER BY id DESC LIMIT 3";
+            $result = mysqli_query($conn, $query);
+            
+            if (mysqli_num_rows($result) > 0) {
+                $counter = 1;
+                while ($teacher = mysqli_fetch_assoc($result)) {
+                    // Default image if none is provided
+                    $image = !empty($teacher['image']) && file_exists($teacher['image']) 
+                        ? $teacher['image'] 
+                        : "https://randomuser.me/api/portraits/men/45.jpg";
+            ?>
+            <!-- Instructor Card <?php echo $counter; ?> -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($teacher['name']); ?>">
+                    </div>
+                    <h2 class="profile-name"><?php echo htmlspecialchars($teacher['name']); ?></h2>
+                    <p class="profile-title"><?php echo htmlspecialchars($teacher['expertise']); ?></p>
+                </div>
+                
+                <div class="profile-social">
+                    <?php if (!empty($teacher['social_facebook'])): ?>
+                    <a href="<?php echo htmlspecialchars($teacher['social_facebook']); ?>" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($teacher['social_twitter'])): ?>
+                    <a href="<?php echo htmlspecialchars($teacher['social_twitter']); ?>" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($teacher['social_linkedin'])): ?>
+                    <a href="<?php echo htmlspecialchars($teacher['social_linkedin']); ?>" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="profile-tabs">
+                    <div class="tab active" data-tab="about<?php echo $counter; ?>">ABOUT</div>
+                    <div class="tab" data-tab="experience<?php echo $counter; ?>">EXPERIENCE</div>
+                    <div class="tab" data-tab="contact<?php echo $counter; ?>">CONTACT</div>
+                </div>
+                
+                <div class="tab-content" id="about<?php echo $counter; ?>-content">
+                    <p><?php echo htmlspecialchars($teacher['bio']); ?></p>
+                </div>
+                
+                <div class="tab-content" id="experience<?php echo $counter; ?>-content" style="display: none;">
+                    <div class="experience-item">
+                        <h4><?php echo htmlspecialchars($teacher['expertise']); ?></h4>
+                        <p class="company">Experience: <?php echo htmlspecialchars($teacher['experience']); ?> years</p>
+                        <p class="period">Qualification: <?php echo htmlspecialchars($teacher['qualification']); ?></p>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="contact<?php echo $counter; ?>-content" style="display: none;">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p><?php echo htmlspecialchars($teacher['email']); ?></p>
+                    </div>
+                    <?php if (!empty($teacher['phone'])): ?>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p><?php echo htmlspecialchars($teacher['phone']); ?></p>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php
+                    $counter++;
+                }
+            } else {
+                // If no teachers in database, show placeholder
+            ?>
             <div class="profile-card">
                 <div class="profile-header">
                     <div class="profile-avatar">
                         <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Profile Picture">
                     </div>
-                    <h2 class="profile-name">John Doe</h2>
-                    <p class="profile-title">WEB DEVELOPER</p>
+                    <h2 class="profile-name">No Teachers Yet</h2>
+                    <p class="profile-title">ADD TEACHERS IN ADMIN PANEL</p>
                 </div>
                 
-                <div class="profile-social">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                
-                <div class="profile-tabs">
-                    <div class="tab active" data-tab="about1">ABOUT</div>
-                    <div class="tab" data-tab="experience1">EXPERIENCE</div>
-                    <div class="tab" data-tab="contact1">CONTACT</div>
-                </div>
-                
-                <div class="tab-content" id="about1-content">
-                    <p>Full-stack developer with 5+ years of experience building web applications. Specializing in JavaScript, PHP, and modern frameworks.</p>
-                </div>
-                
-                <div class="tab-content" id="experience1-content" style="display: none;">
-                    <div class="experience-item">
-                        <h4>Senior Web Developer</h4>
-                        <p class="company">Tech Solutions Inc.</p>
-                        <p class="period">2020 - Present</p>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="contact1-content" style="display: none;">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>john.doe@example.com</p>
-                    </div>
+                <div class="profile-about">
+                    <p>No teachers have been added yet. Please add teachers through the admin panel.</p>
                 </div>
             </div>
-
-            <!-- Instructor Card 2 -->
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Profile Picture">
-                    </div>
-                    <h2 class="profile-name">Sarah Johnson</h2>
-                    <p class="profile-title">UI/UX DESIGNER</p>
-                </div>
-                
-                <div class="profile-social">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                
-                <div class="profile-tabs">
-                    <div class="tab active" data-tab="about2">ABOUT</div>
-                    <div class="tab" data-tab="experience2">EXPERIENCE</div>
-                    <div class="tab" data-tab="contact2">CONTACT</div>
-                </div>
-                
-                <div class="tab-content" id="about2-content">
-                    <p>Creative UI/UX designer with a passion for creating intuitive and beautiful user experiences. Expert in design thinking and user research.</p>
-                </div>
-                
-                <div class="tab-content" id="experience2-content" style="display: none;">
-                    <div class="experience-item">
-                        <h4>Lead Designer</h4>
-                        <p class="company">Creative Solutions</p>
-                        <p class="period">2019 - Present</p>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="contact2-content" style="display: none;">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>sarah.j@example.com</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instructor Card 3 -->
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Profile Picture">
-                    </div>
-                    <h2 class="profile-name">Michael Chen</h2>
-                    <p class="profile-title">DATA SCIENTIST</p>
-                </div>
-                
-                <div class="profile-social">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                
-                <div class="profile-tabs">
-                    <div class="tab active" data-tab="about3">ABOUT</div>
-                    <div class="tab" data-tab="experience3">EXPERIENCE</div>
-                    <div class="tab" data-tab="contact3">CONTACT</div>
-                </div>
-                
-                <div class="tab-content" id="about3-content">
-                    <p>Data scientist with expertise in machine learning and AI. Helping businesses make data-driven decisions through advanced analytics.</p>
-                </div>
-                
-                <div class="tab-content" id="experience3-content" style="display: none;">
-                    <div class="experience-item">
-                        <h4>Senior Data Scientist</h4>
-                        <p class="company">Data Insights Inc.</p>
-                        <p class="period">2018 - Present</p>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="contact3-content" style="display: none;">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>michael.c@example.com</p>
-                    </div>
-                </div>
-            </div>
+            <?php
+            }
+            
+            // Close the database connection
+            mysqli_close($conn);
+            ?>
         </div>
-    </section> 
+    </section>
     <div class="welcome-section" id="welcome-section">
-    <!-- <div class="dot-pattern top-right"></div>
-    <div class="dot-pattern bottom-left"></div> -->
     <div class="container">
         <div class="row">
             <div class="left-section" id="left-section">
@@ -1162,16 +1124,6 @@ require_once 'config.php';
                 </div>
                 
                 <div class="footer-section">
-                    <!-- <h3 class="footer-title">Newsletter</h3>
-                    <form class="footer-form">
-                        <div class="footer-input-group">
-                            <input type="email" placeholder="Enter your email id" required>
-                            <button type="submit" class="footer-submit-btn">
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </form>
-                     -->
                      <h1>Follow us on </h1>
                     <div class="footer-social">
                         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
