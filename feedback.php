@@ -313,48 +313,285 @@ if (isset($_SESSION['feedback_success'])) {
         <a href="index.php" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
     </div>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Theme toggle functionality
-            // Check for saved theme preference - fixed to use the correct localStorage key
-            if(localStorage.getItem('theme') === 'dark') {
-                document.body.classList.add('dark-mode');
+    <style>
+        .feedback-container {
+            max-width: 800px;
+            margin: 80px auto 50px;
+            padding: 40px;
+            background: linear-gradient(145deg, #ffffff, #f5f9ff);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(30, 136, 229, 0.15);
+            border-top: 5px solid #1E88E5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feedback-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(30, 136, 229, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .feedback-header h1 {
+            color: #1E88E5;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .feedback-header p {
+            color: #666;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 25px;
+            color: #1E88E5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 30px;
+            background: rgba(30, 136, 229, 0.1);
+        }
+        
+        .back-button:hover {
+            background: rgba(30, 136, 229, 0.2);
+            transform: translateX(-5px);
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .feedback-form {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            font-size: 15px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #1E88E5;
+            box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+            outline: none;
+            background-color: #fff;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .star-rating input {
+            display: none;
+        }
+        
+        .star-rating label {
+            font-size: 30px;
+            color: #ddd;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: #FFD700;
+            transform: scale(1.2);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #1E88E5, #26E7C8);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(30, 136, 229, 0.4);
+            background: linear-gradient(135deg, #26E7C8, #1E88E5);
+        }
+        
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .alert i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .alert-success {
+            background-color: rgba(38, 231, 200, 0.15);
+            color: #26E7C8;
+            border-left: 4px solid #26E7C8;
+        }
+        
+        .alert-danger {
+            background-color: rgba(231, 76, 60, 0.15);
+            color: #e74c3c;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode .feedback-container {
+            background: linear-gradient(145deg, #1a2a3a, #0a1929);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-top: 5px solid #1E88E5;
+        }
+        
+        body.dark-mode .feedback-header h1 {
+            color: #1E88E5;
+        }
+        
+        body.dark-mode .feedback-header p {
+            color: #b8b8b8;
+        }
+        
+        body.dark-mode .form-group label {
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .form-group select,
+        body.dark-mode .form-group textarea {
+            background-color: #1a2a3a;
+            border-color: #2a3a4a;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .form-group select:focus,
+        body.dark-mode .form-group textarea:focus {
+            border-color: #1E88E5;
+            background-color: #2a3a4a;
+        }
+        
+        body.dark-mode .back-button {
+            background: rgba(30, 136, 229, 0.2);
+        }
+        
+        body.dark-mode .back-button:hover {
+            background: rgba(30, 136, 229, 0.3);
+        }
+        
+        body.dark-mode .star-rating label {
+            color: #444;
+        }
+        
+        body.dark-mode .star-rating label:hover,
+        body.dark-mode .star-rating label:hover ~ label,
+        body.dark-mode .star-rating input:checked ~ label {
+            color: #FFD700;
+        }
+        
+        body.dark-mode .alert-success {
+            background-color: rgba(38, 231, 200, 0.1);
+            color: #26E7C8;
+        }
+        
+        body.dark-mode .alert-danger {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .feedback-container {
+                padding: 25px;
+                margin: 60px auto 40px;
             }
             
-            // Add a simple way to toggle theme for testing
-            const backButton = document.querySelector('.back-button');
-            backButton.addEventListener('dblclick', function() {
-                document.body.classList.toggle('dark-mode');
-                const isDarkMode = document.body.classList.contains('dark-mode');
-                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-            });
+            .feedback-header h1 {
+                font-size: 26px;
+            }
             
-            // Form validation for star rating
-            const feedbackForm = document.querySelector('.feedback-form');
-            const ratingAlert = document.querySelector('.rating-alert');
+            .star-rating {
+                gap: 5px;
+            }
             
-            // Show/hide the rating alert when stars are clicked
-            document.querySelectorAll('input[name="rating"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    ratingAlert.style.display = 'none';
-                });
-            });
+            .star-rating label {
+                font-size: 24px;
+            }
             
-            feedbackForm.addEventListener('submit', function(event) {
-                const starRating = document.querySelector('input[name="rating"]:checked');
-                if (!starRating) {
-                    event.preventDefault();
-                    ratingAlert.style.display = 'block';
-                    alert('Please select a star rating before submitting your feedback.');
-                    
-                    // Scroll to the rating section
-                    document.querySelector('.star-rating').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                }
-            });
-        });
-    </script>
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </body>
 </html>
