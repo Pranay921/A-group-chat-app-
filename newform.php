@@ -22,6 +22,21 @@
         transform: scale(1.2);
         color: #4d84e2;
       }
+      
+      .teacher-login-icon {
+        position: absolute;
+        top: 20px;
+        right: 70px;
+        font-size: 24px;
+        color: #5995fd;
+        cursor: pointer;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+      }
+      .teacher-login-icon:hover {
+        transform: scale(1.2);
+        color: #4d84e2;
+      }
     </style>
   </head>
   <body>
@@ -29,7 +44,12 @@
     <a href="./admin_login.php" class="admin-login-icon" title="Admin Login">
       <i class="fas fa-user-shield"></i>
     </a>
-
+    
+    <!-- Teacher Login Icon -->
+    <a href="./teacher_login.php" class="teacher-login-icon" title="Teacher Login">
+      <i class="fas fa-chalkboard-teacher"></i>
+    </a>
+    
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">

@@ -29,75 +29,81 @@ $success_message = '';
 $error_message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_teacher'])) {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $expertise = mysqli_real_escape_string($conn, $_POST['expertise']);
-    $experience = (int)$_POST['experience'];
-    $qualification = mysqli_real_escape_string($conn, $_POST['qualification']);
-    $bio = mysqli_real_escape_string($conn, $_POST['bio']);
-    $social_linkedin = mysqli_real_escape_string($conn, $_POST['social_linkedin']);
-    $social_twitter = mysqli_real_escape_string($conn, $_POST['social_twitter']);
-    $social_facebook = mysqli_real_escape_string($conn, $_POST['social_facebook']);
-    
-    // Handle image upload
-    $image_path = '';
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $upload_dir = 'uploads/teachers/';
+    if (isset($_POST['name']) && isset($_POST['email'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $expertise = $_POST['expertise'];
+        $experience = (int)$_POST['experience'];
+        $qualification = $_POST['qualification'];
+        $bio = $_POST['bio'];
+        $social_linkedin = $_POST['social_linkedin'];
+        $social_twitter = $_POST['social_twitter'];
+        $social_facebook = $_POST['social_facebook'];
         
-        // Create directory if it doesn't exist
-        if (!file_exists($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
+        // Get the new username and password fields
+        $username = $_POST['username'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
         
-        $file_name = time() . '_' . basename($_FILES['image']['name']);
-        $target_file = $upload_dir . $file_name;
+        // Image upload handling
+        $image_path = "";
         
-        // Check if image file is an actual image
-        $check = getimagesize($_FILES['image']['tmp_name']);
-        if ($check !== false) {
-            // Check file size (limit to 5MB)
-            if ($_FILES['image']['size'] < 5000000) {
-                // Allow certain file formats
-                $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                if ($file_type == "jpg" || $file_type == "png" || $file_type == "jpeg" || $file_type == "gif") {
-                    if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
-                        $image_path = $target_file;
+        // Handle image upload
+        $image_path = '';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+            $upload_dir = 'uploads/teachers/';
+            
+            // Create directory if it doesn't exist
+            if (!file_exists($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+            
+            $file_name = time() . '_' . basename($_FILES['image']['name']);
+            $target_file = $upload_dir . $file_name;
+            
+            // Check if image file is an actual image
+            $check = getimagesize($_FILES['image']['tmp_name']);
+            if ($check !== false) {
+                // Check file size (limit to 5MB)
+                if ($_FILES['image']['size'] < 5000000) {
+                    // Allow certain file formats
+                    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                    if ($file_type == "jpg" || $file_type == "png" || $file_type == "jpeg" || $file_type == "gif") {
+                        if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+                            $image_path = $target_file;
+                        } else {
+                            $error_message = "Sorry, there was an error uploading your file.";
+                        }
                     } else {
-                        $error_message = "Sorry, there was an error uploading your file.";
+                        $error_message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                     }
                 } else {
-                    $error_message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                    $error_message = "Sorry, your file is too large. Maximum size is 5MB.";
                 }
             } else {
-                $error_message = "Sorry, your file is too large. Maximum size is 5MB.";
+                $error_message = "File is not an image.";
             }
-        } else {
-            $error_message = "File is not an image.";
-        }
-    }
-    
-    if (empty($error_message)) {
-        // Insert teacher data into database
-        $insert_query = "INSERT INTO teachers (name, email, phone, image, expertise, experience, qualification, bio, social_linkedin, social_twitter, social_facebook) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = mysqli_prepare($conn, $insert_query);
-        
-        // Fix: Change the type definition string from 'sssssississs' to 'sssssisssss'
-        // The issue is that you're using 'i' for experience (which is correct)
-        // but also using 'i' for some string parameters
-        mysqli_stmt_bind_param($stmt, "sssssisssss", $name, $email, $phone, $image_path, $expertise, $experience, $qualification, $bio, $social_linkedin, $social_twitter, $social_facebook);
-        
-        if (mysqli_stmt_execute($stmt)) {
-            $success_message = "Teacher added successfully!";
-            // Refresh the page to show the new teacher
-            header("Location: admin_teachers.php?success=teacher_added");
-            exit();
-        } else {
-            $error_message = "Error: " . mysqli_error($conn);
         }
         
-        mysqli_stmt_close($stmt);
+        if (empty($error_message)) {
+            // Insert teacher data into database with username and password
+            $insert_query = "INSERT INTO teachers (name, email, phone, image, expertise, experience, qualification, bio, social_linkedin, social_twitter, social_facebook, username, password) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = mysqli_prepare($conn, $insert_query);
+            
+            mysqli_stmt_bind_param($stmt, "sssssisssssss", $name, $email, $phone, $image_path, $expertise, $experience, $qualification, $bio, $social_linkedin, $social_twitter, $social_facebook, $username, $password);
+            
+            if (mysqli_stmt_execute($stmt)) {
+                $success_message = "Teacher added successfully!";
+                // Refresh the page to show the new teacher
+                header("Location: admin_teachers.php?success=teacher_added");
+                exit();
+            } else {
+                $error_message = "Error: " . mysqli_error($conn);
+            }
+            
+            mysqli_stmt_close($stmt);
+        }
     }
 }
 
@@ -612,6 +618,16 @@ $teachers_result = mysqli_query($conn, $teachers_query);
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <!-- New username field -->
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <!-- New password field -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number</label>

@@ -21,15 +21,14 @@ require_once 'config.php';
         <script src="favorites.js"></script>
 
         <style>
-            /* Add this new CSS for instructor cards */
+            /* Replace the existing instructor-cards CSS */
             .instructor-cards {
-                display: flex;
-                justify-content: space-between;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
                 margin: 0 auto;
                 max-width: 1200px;
-                gap: 20px;
                 padding: 0 15px;
-                flex-wrap: nowrap; /* Prevent wrapping */
             }
             
             /* Animation keyframes for course cards */
@@ -126,6 +125,21 @@ require_once 'config.php';
                 
                 .profile-card {
                     width: 100%;
+                    max-width: 400px;
+                }
+            }
+            
+            /* Add these media queries after the instructor-cards CSS */
+            @media screen and (max-width: 1200px) {
+                .instructor-cards {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 20px;
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                .instructor-cards {
+                    grid-template-columns: 1fr;
                     max-width: 400px;
                 }
             }
@@ -471,13 +485,12 @@ require_once 'config.php';
 
             /* Add this new CSS for instructor cards */
             .instructor-cards {
-                display: flex;
-                justify-content: space-between;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
                 margin: 0 auto;
                 max-width: 1200px;
-                gap: 20px;
                 padding: 0 15px;
-                flex-wrap: nowrap; /* Prevent wrapping */
             }
             
             /* Animation keyframes for course cards */
@@ -880,7 +893,7 @@ require_once 'config.php';
             }
             
             // Get teachers from database
-            $query = "SELECT * FROM teachers ORDER BY id DESC LIMIT 3";
+            $query = "SELECT * FROM teachers ORDER BY id DESC LIMIT 400";
             $result = mysqli_query($conn, $query);
             
             if (mysqli_num_rows($result) > 0) {
