@@ -35,13 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </script>";
             exit();
         } else {
-            // Return to newform.html instead of using history.back()
-            echo "<script>alert('Incorrect password!'); window.location.href='newform.html';</script>";
+            // Redirect to newform.php with signin parameter
+            echo "<script>alert('Incorrect password!'); window.location.href='newform.php?action=signin';</script>";
             exit();
         }
     } else {
-        // Return to newform.html instead of using history.back()
-        echo "<script>alert('No user found!'); window.location.href='newform.html';</script>";
+        // Redirect to newform.php with signin parameter
+        echo "<script>alert('No user found!'); window.location.href='newform.php?action=signin';</script>";
         exit();
     }
 

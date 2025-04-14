@@ -148,5 +148,15 @@
     </div>
 
     <script src="newform.js"></script>
+    
+    <?php if(isset($_GET['action']) && $_GET['action'] == 'signin'): ?>
+    <script>
+      // Make sure the sign-in form is shown when redirected from failed login
+      document.addEventListener('DOMContentLoaded', function() {
+        // Remove sign-up-mode class if it exists
+        document.querySelector('.container').classList.remove('sign-up-mode');
+      });
+    </script>
+    <?php endif; ?>
   </body>
 </html>
